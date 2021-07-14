@@ -5,7 +5,7 @@ description: Easy Windows machine from HTB
 ---
 
 # REMOTE
-![banner](https://github.com/jagelito/jagelito.github.io/blob/master/_posts/htb-remote/remotebanner.png?raw=true)
+![banner](https://github.com/jagelit0/jagelit0.github.io/blob/master/_posts/htb-remote/remotebanner.png?raw=true)
 ---
 # Recon 
 
@@ -80,7 +80,7 @@ A simple vista, me llama la atención, el puerto 21, ya que nos permite el logue
 
 ## Enumeración Web - port 80 (TCP)
  Al acceder vemos una "tienda" que ofrece productos de _Umbraco_ . Tras navegar por ella y buscar algún parámetro extraño y revisar el código fuente, no observo nada que me llame la atención. Busco en google "Umbraco" y aparece que es un CMS. Tras haber estado cotilleando un rato por la web y no haber encontrado nada, procedo a enumerar la web con herramientas básicas.
-![web](https://github.com/jagelito/jagelito.github.io/blob/master/_posts/htb-remote/simple-web.png?raw=true)
+![web](https://github.com/jagelit0/jagelit0.github.io/blob/master/_posts/htb-remote/simple-web.png?raw=true)
 
 
 ### Nikto
@@ -110,7 +110,7 @@ jagelito ~$ nikto -h http://remote.htb
 
 
 Nikto nos avisa que existe un directorio llamado _Umbraco_ , al acceder a él vemos que realmente el CMS que se está utilizando es este.
-![umbraco](https://github.com/jagelito/jagelito.github.io/blob/master/_posts/htb-remote/umbraco_portal.png?raw=true)
+![umbraco](https://github.com/jagelit0/jagelit0.github.io/blob/master/_posts/htb-remote/umbraco_portal.png?raw=true)
 
 
 ### Dirsearch
@@ -257,7 +257,7 @@ Encontramos que aparecen dos usuarios con lo que parecen dos contraseñas hashea
 # Explotación
 ## Umbraco CMS
 Una vez que tenemos un usuario y una contraseña en texto claro, pruebo a acceder a Umbraco y conseguimos loguearnos como administrator. Conseguimos saber qué versión está corriendo.
-![admin](https://github.com/jagelito/jagelito.github.io/blob/master/_posts/htb-remote/admin_good.png?raw=true)
+![admin](https://github.com/jagelit0/jagelit0.github.io/blob/master/_posts/htb-remote/admin_good.png?raw=true)
 
 Una vez sabemos la versión, buscamos exploits disponibles de manera local para tratar de conseguir RCE. Nos creamos un mirror del exploit y le pasamos los parámetros que nos pide.
 
@@ -385,7 +385,7 @@ PS C:/Windows/TEMP> ./win.exe
 ```
 
 
-Encontramos el servicio _UsoSvc_, siguiendo la guía de https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md, encontramos que podemos conseguir escalar al usuario Administrator con el CVE-2019-1322. Se trata de una incorrecta administración de permisos en un servicio corriendo bajo NT AUTHORITY/SYSTEM, permitiéndonos reemplazar el binario por netcat y así obtener una reverse como Administrador.
+Encontramos el servicio _UsoSvc_, siguiendo la guía de [Payload All The Things - Windows Priv. Esc.](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md), encontramos que podemos conseguir escalar al usuario Administrator con el CVE-2019-1322. Se trata de una incorrecta administración de permisos en un servicio corriendo bajo NT AUTHORITY/SYSTEM, permitiéndonos reemplazar el binario por netcat y así obtener una reverse como Administrador.
 
 
 ```powershell
