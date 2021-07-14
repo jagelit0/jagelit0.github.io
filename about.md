@@ -12,5 +12,5 @@ If you have a question about him or else, just send a letter to him.
 You can [report](http://github.com/jagelit0/jagelit0.github.io/issues/new) if there is an broken link(s) or somethings else.
 
 
-- https://twitter.com/jagelit0 🐦
-- https://github.com/jagelit0 📝 
+- [Twitter](https://twitter.com/jagelit0) 🐦
+- [Github](https://github.com/jagelit0) 📝 
