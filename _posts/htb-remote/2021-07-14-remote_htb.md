@@ -1,6 +1,6 @@
 ---
 layout: post
-tittle: Remote HTB WriteUp
+title: Remote HTB WriteUp
 description: Easy Windows machine from HTB
 ---
 
