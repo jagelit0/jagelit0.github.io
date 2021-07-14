@@ -1,12 +1,12 @@
 # Site settings
 title: "Jagelito's Adventures" # site title
 description: >- # site description
-  Blog created to share my writeups, thoughts and learnings
-lang: en-US # default lang
-timezone: Europe/Madrid # set your timezone
+  Blog created to share my WriteUps, thoughts and learnings.
+lang: en-US 
+timezone: Europe/Madrid
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
 repo: https://github.com/piharpi/jekyll-klise # site repo [optional]
-mode: dark # default theme "dark" | "light"
+mode: dark
 
 # Profile settings
 author:
@@ -17,7 +17,6 @@ author:
   github: jagelit0 # github username
   twitter: jagelit0 # twitter username
     # email: your-email@email.com # email adress
-  avatar: assets/img/cigar.png
 
 # URL settings
 url: "https://jagelito.github.io" #
