@@ -1,5 +1,5 @@
 ---
-title: About Me!
+title: About Me
 permalink: /about/
 layout: page
 comments: false
