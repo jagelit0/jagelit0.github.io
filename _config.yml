@@ -10,7 +10,7 @@ mode: dark # default theme "dark" | "light"
 
 # Profile settings
 author:
-  name: Jagelito # author name
+  name: "Jagelito's Adventures" # author name
   bio: >- # tell to the world
     
   username: Jagelito # general username
