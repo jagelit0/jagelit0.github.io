@@ -17,7 +17,7 @@ author:
   github: jagelit0 # github username
   twitter: jagelit0 # twitter username
     # email: your-email@email.com # email adress
-  avatar: https://w7.pngwing.com/pngs/332/345/png-transparent-what-emoji-2-ghost-sticker-social-media-emoji.png # change with your own avatar
+  avatar: assets/img/png-transparent-what-emoji-2-ghost-sticker-social-media-emoji.png # change with your own avatar
 
 # URL settings
 url: "https://jagelito.github.io" #
