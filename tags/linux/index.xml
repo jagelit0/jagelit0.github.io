@@ -1,0 +1,57 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>linux - Tag - </title>
+    <link>/tags/linux/</link>
+    <description>linux - Tag - </description>
+    <generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 03 Nov 2021 15:39:08 &#43;0200</lastBuildDate><atom:link href="/tags/linux/" rel="self" type="application/rss+xml" /><item>
+  <title>Seal HTB Writeup</title>
+  <link>/posts/seal-htb/seal-htb/</link>
+  <pubDate>Wed, 03 Nov 2021 15:39:08 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/posts/seal-htb/seal-htb/</guid>
+  <description><![CDATA[<div class="featured-image">
+        <img src="/../assets/posts/seal/info_card.png" referrerpolicy="no-referrer">
+      </div>Seal HTB WriteUp - Medium Linux Machine from HackTheBox]]></description>
+</item>
+<item>
+  <title>Zeno THM Writeup</title>
+  <link>/posts/zeno-thm/zeno-thm/</link>
+  <pubDate>Mon, 25 Oct 2021 08:39:53 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/posts/zeno-thm/zeno-thm/</guid>
+  <description><![CDATA[<div class="featured-image">
+        <img src="/../assets/posts/zeno/zeno_banner.png" referrerpolicy="no-referrer">
+      </div>Zeno WriteUp - Medium Linux Machine from TryHackMe]]></description>
+</item>
+<item>
+  <title>Monitors HTB Writeup</title>
+  <link>/posts/monitors-htb/monitors-htb/</link>
+  <pubDate>Mon, 11 Oct 2021 12:40:00 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/posts/monitors-htb/monitors-htb/</guid>
+  <description><![CDATA[<div class="featured-image">
+        <img src="/../assets/posts/monitors/monitors_card.png" referrerpolicy="no-referrer">
+      </div>Monitors HTB Writeup - Hard Linux Machine from HackTheBox]]></description>
+</item>
+<item>
+  <title>Remote HTB Writeup</title>
+  <link>/posts/remote-htb/remote-htb/</link>
+  <pubDate>Mon, 11 Oct 2021 12:40:00 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/posts/remote-htb/remote-htb/</guid>
+  <description><![CDATA[<div class="featured-image">
+        <img src="/../assets/posts/remote/remote_banner.png" referrerpolicy="no-referrer">
+      </div>Remote HTB Writeup - Easy Linux Machine from HackTheBox]]></description>
+</item>
+<item>
+  <title>Armaggedon HTB Writeup</title>
+  <link>/posts/armaggedon-htb/armaggedon-htb/</link>
+  <pubDate>Sat, 24 Jul 2021 15:39:00 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/posts/armaggedon-htb/armaggedon-htb/</guid>
+  <description><![CDATA[<div class="featured-image">
+        <img src="/../assets/posts/armaggedon/banner.png" referrerpolicy="no-referrer">
+      </div>Armaggedon HTB WriteUp - Easy Linux Machine from HackTheBox]]></description>
+</item>
+</channel>
+</rss>

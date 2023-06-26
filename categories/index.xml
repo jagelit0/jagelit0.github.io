@@ -1,0 +1,47 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Categories - Category - </title>
+    <link>/categories/</link>
+    <description>Categories - Category - </description>
+    <generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 21 Jun 2023 13:12:15 &#43;0200</lastBuildDate><atom:link href="/categories/" rel="self" type="application/rss+xml" /><item>
+  <title>malware-development</title>
+  <link>/categories/malware-development/</link>
+  <pubDate>Wed, 21 Jun 2023 13:12:15 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/categories/malware-development/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>windows-internals</title>
+  <link>/categories/windows-internals/</link>
+  <pubDate>Wed, 21 Jun 2023 13:12:15 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/categories/windows-internals/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>htb</title>
+  <link>/categories/htb/</link>
+  <pubDate>Wed, 03 Nov 2021 15:39:08 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/categories/htb/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>writeups</title>
+  <link>/categories/writeups/</link>
+  <pubDate>Wed, 03 Nov 2021 15:39:08 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/categories/writeups/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>thm</title>
+  <link>/categories/thm/</link>
+  <pubDate>Mon, 25 Oct 2021 08:39:53 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/categories/thm/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

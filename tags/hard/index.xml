@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>hard - Tag - </title>
+    <link>/tags/hard/</link>
+    <description>hard - Tag - </description>
+    <generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 11 Oct 2021 12:40:00 &#43;0200</lastBuildDate><atom:link href="/tags/hard/" rel="self" type="application/rss+xml" /><item>
+  <title>Monitors HTB Writeup</title>
+  <link>/posts/monitors-htb/monitors-htb/</link>
+  <pubDate>Mon, 11 Oct 2021 12:40:00 &#43;0200</pubDate>
+  <author>Author</author>
+  <guid>/posts/monitors-htb/monitors-htb/</guid>
+  <description><![CDATA[<div class="featured-image">
+        <img src="/../assets/posts/monitors/monitors_card.png" referrerpolicy="no-referrer">
+      </div>Monitors HTB Writeup - Hard Linux Machine from HackTheBox]]></description>
+</item>
+</channel>
+</rss>

